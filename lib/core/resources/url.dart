@@ -1,5 +1,5 @@
 class Url {
-  String baseUrl = "https://27ad-138-199-22-105.ngrok-free.app/api/";
+  String baseUrl = "https://render-qdcy.onrender.com/api/";
   //!
   String url = "http://127.0.0.1:8000/api/";
   //!

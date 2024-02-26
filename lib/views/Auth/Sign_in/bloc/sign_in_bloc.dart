@@ -16,7 +16,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       emit(LoadingToLogin());
       /*dynamic*/ Model temp = await LoginService().login(model: event.user);
 
-      if (temp is TokenModel /*String*/) {
+      if (temp is TokenModel ) {
         emit(SuccessInLogin());
       } else if (temp is ErrorModel) {
         emit(ErrorInLogin(error: temp));

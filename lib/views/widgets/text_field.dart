@@ -30,7 +30,8 @@ class MainTextField extends StatelessWidget {
         controller: controller,
         decoration: InputDecoration(
           labelText: labelText,
-          labelStyle: TextStyle(color: Colors.white),
+          labelStyle:
+              TextStyle(color: const Color.fromARGB(146, 255, 255, 255)),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
           ),

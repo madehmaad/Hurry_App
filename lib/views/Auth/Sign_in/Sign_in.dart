@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hurry_project/core/domain/model/response_model/login_model.dart';
 import 'package:hurry_project/core/resources/colors.dart';
 import 'package:hurry_project/views/Auth/Sign_in/bloc/sign_in_bloc.dart';
-// import 'package:hurry_project/views/Login/Sign_up/sign_up_screen.dart';
+import 'package:hurry_project/views/Auth/Sign_up/Sign_Up.dart';
+import 'package:hurry_project/views/Auth/Sign_up/bloc/sign_up_bloc.dart';
+
 import 'package:hurry_project/views/widgets/container.dart';
 import 'package:hurry_project/views/widgets/text_field.dart';
 import 'package:super_rich_text/super_rich_text.dart';
@@ -38,19 +40,24 @@ class SinginScreen extends StatelessWidget {
             listener: (context, state) {
               if (state is LoadingToLogin) {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  duration: Duration(seconds: 3),
-                  content: Text('try to Login'),
+                  duration: Duration(seconds: 2),
+                  content: SizedBox(
+                      height: 30,
+                      width: 30,
+                      child: CircularProgressIndicator()),
                   backgroundColor: Colors.blue,
                   behavior: SnackBarBehavior.floating,
                 ));
               }
               if (state is SuccessInLogin) {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  duration: Duration(seconds: 7),
+                  duration: Duration(seconds: 2),
                   content: Text('Success in login'),
                   backgroundColor: Colors.green,
                   behavior: SnackBarBehavior.floating,
                 ));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Scaffold()));
               }
               if (state is ErrorInLogin || state is ExcptionInLogin) {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -127,8 +134,9 @@ class SinginScreen extends StatelessWidget {
                           passwordController.text.isEmpty) {
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
-                          duration: Duration(seconds: 10),
-                          content: Text('you need to Enter your name and id'),
+                          duration: Duration(seconds: 3),
+                          content:
+                              Text('you need to Enter your name and password'),
                           backgroundColor: Colors.red,
                           behavior: SnackBarBehavior.floating,
                         ));
@@ -147,7 +155,7 @@ class SinginScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Scaffold(),
+                              builder: (context) => SingupScreen(),
                             ),
                           );
                         },

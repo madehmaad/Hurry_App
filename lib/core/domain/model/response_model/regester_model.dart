@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:hurry_project/core/domain/model/model.dart';
@@ -7,7 +8,7 @@ class RegisterModel extends Model {
   String email;
   String password;
   String gender;
-  DateTime birth;
+  String birth;
   String phone;
 
   RegisterModel({
@@ -19,44 +20,77 @@ class RegisterModel extends Model {
     required this.phone,
   });
 
+ 
+
   RegisterModel copyWith({
     String? name,
     String? email,
     String? password,
     String? gender,
-    DateTime? birth,
+    String? birth,
     String? phone,
-  }) =>
-      RegisterModel(
-        name: name ?? this.name,
-        email: email ?? this.email,
-        password: password ?? this.password,
-        gender: gender ?? this.gender,
-        birth: birth ?? this.birth,
-        phone: phone ?? this.phone,
-      );
+  }) {
+    return RegisterModel(
+      name: name ?? this.name,
+      email: email ?? this.email,
+      password: password ?? this.password,
+      gender: gender ?? this.gender,
+      birth: birth ?? this.birth,
+      phone: phone ?? this.phone,
+    );
+  }
 
-  factory RegisterModel.fromJson(String str) =>
-      RegisterModel.fromMap(json.decode(str));
+   toMap() {
+    return <String, dynamic>{
+      'name': name,
+      'email': email,
+      'password': password,
+      'gender': gender,
+      'birth': birth,
+      'phone': phone,
+    };
+  }
+
+  factory RegisterModel.fromMap(Map<String, dynamic> map) {
+    return RegisterModel(
+      name: map['name'] as String,
+      email: map['email'] as String,
+      password: map['password'] as String,
+      gender: map['gender'] as String,
+      birth: map['birth'] as String,
+      phone: map['phone'] as String,
+    );
+  }
 
   String toJson() => json.encode(toMap());
 
-  factory RegisterModel.fromMap(Map<String, dynamic> json) => RegisterModel(
-        name: json["name"],
-        email: json["email"],
-        password: json["password"],
-        gender: json["gender"],
-        birth: DateTime.parse(json["birth"]),
-        phone: json["phone"],
-      );
+  factory RegisterModel.fromJson(String source) => RegisterModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
-  Map<String, dynamic> toMap() => {
-        "name": name,
-        "email": email,
-        "password": password,
-        "gender": gender,
-        "birth":
-            "${birth.year.toString().padLeft(4, '0')}-${birth.month.toString().padLeft(2, '0')}-${birth.day.toString().padLeft(2, '0')}",
-        "phone": phone,
-      };
+  @override
+  String toString() {
+    return 'RegisterModel(name: $name, email: $email, password: $password, gender: $gender, birth: $birth, phone: $phone)';
+  }
+
+  @override
+  bool operator ==(covariant RegisterModel other) {
+    if (identical(this, other)) return true;
+  
+    return 
+      other.name == name &&
+      other.email == email &&
+      other.password == password &&
+      other.gender == gender &&
+      other.birth == birth &&
+      other.phone == phone;
+  }
+
+  @override
+  int get hashCode {
+    return name.hashCode ^
+      email.hashCode ^
+      password.hashCode ^
+      gender.hashCode ^
+      birth.hashCode ^
+      phone.hashCode;
+  }
 }

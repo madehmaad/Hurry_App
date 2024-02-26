@@ -3,12 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hurry_project/core/config/bloc_obs.dart';
 import 'package:hurry_project/Views/Auth/Sign_in/sign_in.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:hurry_project/core/domain/model/response_model/regester_model.dart';
+import 'package:hurry_project/core/domain/service/Post/Sign_up_service.dart';
+import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Position position = await Geolocator.getCurrentPosition(
+  //     desiredAccuracy: LocationAccuracy.high);
+  // print(position);
+
+
   Bloc.observer = MyBlocObserver();
   runApp(
     const MyApp(),
-    
   );
 }
 
@@ -20,7 +30,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       home: SinginScreen(),
     );
   }
