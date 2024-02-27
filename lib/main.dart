@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hurry_project/core/config/bloc_obs.dart';
 import 'package:hurry_project/Views/Auth/Sign_in/sign_in.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:hurry_project/core/domain/model/response_model/regester_model.dart';
-import 'package:hurry_project/core/domain/service/Post/Sign_up_service.dart';
-import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
+import 'package:hurry_project/core/config/get_it.dart';
+
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  setup();
+ 
   // Position position = await Geolocator.getCurrentPosition(
   //     desiredAccuracy: LocationAccuracy.high);
   // print(position);

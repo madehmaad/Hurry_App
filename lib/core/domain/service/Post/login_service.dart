@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:hurry_project/core/domain/model/error_model.dart';
 import 'package:hurry_project/core/domain/model/exception_model.dart';
 import 'package:hurry_project/core/domain/model/model.dart';
@@ -12,24 +13,24 @@ class LoginService extends Service {
       response =
           await dio.post(Url().baseUrl + Url().loginUrl, data: model.toJson());
 
-      print(response);
+      // print(response);
 
       if (response.statusCode == 200) {
         dynamic temp = response.data;
         TokenModel result = TokenModel(token: temp['token']);
+        print(result);
         return result;
-       
       } else {
-       dynamic temp = response.data;
+        dynamic temp = response.data;
         // print(response.statusCode);
         ErrorModel result = ErrorModel(error: temp['error']);
         return result;
       }
     } catch (e) {
       dynamic temp = response.data;
-        // print(response.statusCode);
-        ExceptionModel result = ExceptionModel(excption: temp['excption']);
-        return result;
+      // print(response.statusCode);
+      ExceptionModel result = ExceptionModel(excption: temp['excption']);
+      return result;
     }
   }
 }

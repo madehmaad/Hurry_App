@@ -20,7 +20,7 @@ class MainTextField extends StatelessWidget {
       height: MediaQuery.of(context).size.height / 14,
       width: MediaQuery.of(context).size.width / 1.1,
       decoration: ShapeDecoration(
-        color: MainColor().backgroundTextFieldColor,
+        color: const Color.fromARGB(255, 79, 78, 78),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),

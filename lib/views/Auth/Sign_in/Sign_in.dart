@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hurry_project/core/config/get_it.dart';
 import 'package:hurry_project/core/domain/model/response_model/login_model.dart';
 import 'package:hurry_project/core/resources/colors.dart';
 import 'package:hurry_project/views/Auth/Sign_in/bloc/sign_in_bloc.dart';
 import 'package:hurry_project/views/Auth/Sign_up/Sign_Up.dart';
 import 'package:hurry_project/views/Auth/Sign_up/bloc/sign_up_bloc.dart';
+import 'package:hurry_project/views/Home/HomePage.dart';
 
 import 'package:hurry_project/views/widgets/container.dart';
 import 'package:hurry_project/views/widgets/text_field.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:super_rich_text/super_rich_text.dart';
 
 // ignore: must_be_immutable
@@ -41,10 +44,7 @@ class SinginScreen extends StatelessWidget {
               if (state is LoadingToLogin) {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   duration: Duration(seconds: 2),
-                  content: SizedBox(
-                      height: 30,
-                      width: 30,
-                      child: CircularProgressIndicator()),
+                  content: Text('Loading...'),
                   backgroundColor: Colors.blue,
                   behavior: SnackBarBehavior.floating,
                 ));
@@ -56,8 +56,12 @@ class SinginScreen extends StatelessWidget {
                   backgroundColor: Colors.green,
                   behavior: SnackBarBehavior.floating,
                 ));
+                config
+                    .get<SharedPreferences>()
+                    .setString('username', userNameController.text);
+
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Scaffold()));
+                    MaterialPageRoute(builder: (context) => HomeScreen()));
               }
               if (state is ErrorInLogin || state is ExcptionInLogin) {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
