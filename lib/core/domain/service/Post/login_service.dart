@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:hurry_project/core/domain/model/error_model.dart';
 import 'package:hurry_project/core/domain/model/exception_model.dart';
 import 'package:hurry_project/core/domain/model/model.dart';
@@ -22,14 +21,13 @@ class LoginService extends Service {
         return result;
       } else {
         dynamic temp = response.data;
-        // print(response.statusCode);
-        ErrorModel result = ErrorModel(error: temp['error']);
+        print(response.data);
+        ErrorModel result = ErrorModel(error: temp.error);
         return result;
       }
     } catch (e) {
-      dynamic temp = response.data;
-      // print(response.statusCode);
-      ExceptionModel result = ExceptionModel(excption: temp['excption']);
+      
+      ExceptionModel result = ExceptionModel(excption: e.toString());
       return result;
     }
   }

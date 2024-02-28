@@ -27,9 +27,7 @@ class SignUpService extends Service {
       }
     } catch (e) {
       
-       dynamic temp = response.data;
-        // print(response.statusCode);
-        ExceptionModel result = ExceptionModel(excption: temp['excption']);
+        ExceptionModel result = ExceptionModel(excption: e.toString());
         return result;
     }
   }

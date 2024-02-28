@@ -16,7 +16,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInBloc() : super(SignInInitial()) {
     on<Login>((event, emit) async {
       emit(LoadingToLogin());
-      /*dynamic*/ Model temp = await LoginService().login(model: event.user);
+       Model temp = await LoginService().login(model: event.user);
 
       if (temp is TokenModel ) {
         config

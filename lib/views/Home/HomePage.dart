@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hurry_project/core/config/get_it.dart';
 import 'package:hurry_project/core/resources/colors.dart';
-import 'package:hurry_project/views/Auth/Sign_in/bloc/sign_in_bloc.dart';
 import 'package:hurry_project/views/Bus_way/Bus_way.dart';
 import 'package:hurry_project/views/Taxi_Order/Taxi_order.dart';
-import 'package:hurry_project/views/widgets/container.dart';
-import 'package:hurry_project/views/widgets/text_field.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:super_rich_text/super_rich_text.dart';
 
 // ignore: must_be_immutable

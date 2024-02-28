@@ -5,9 +5,7 @@ import 'package:hurry_project/core/domain/model/response_model/login_model.dart'
 import 'package:hurry_project/core/resources/colors.dart';
 import 'package:hurry_project/views/Auth/Sign_in/bloc/sign_in_bloc.dart';
 import 'package:hurry_project/views/Auth/Sign_up/Sign_Up.dart';
-import 'package:hurry_project/views/Auth/Sign_up/bloc/sign_up_bloc.dart';
 import 'package:hurry_project/views/Home/HomePage.dart';
-
 import 'package:hurry_project/views/widgets/container.dart';
 import 'package:hurry_project/views/widgets/text_field.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -41,14 +39,6 @@ class SinginScreen extends StatelessWidget {
           backgroundColor: Colors.transparent,
           body: BlocConsumer<SignInBloc, SignInState>(
             listener: (context, state) {
-              if (state is LoadingToLogin) {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  duration: Duration(seconds: 2),
-                  content: Text('Loading...'),
-                  backgroundColor: Colors.blue,
-                  behavior: SnackBarBehavior.floating,
-                ));
-              }
               if (state is SuccessInLogin) {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   duration: Duration(seconds: 2),
@@ -73,6 +63,7 @@ class SinginScreen extends StatelessWidget {
               }
             },
             builder: (context, state) {
+              // return (state is LoadingToLogin)?
               return Column(
                 children: [
                   SizedBox(
@@ -170,6 +161,14 @@ class SinginScreen extends StatelessWidget {
                       )
                     ],
                   ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 20,
+                  ),
+                  (state is LoadingToLogin)
+                      ? CircularProgressIndicator(
+                          color: MainColor().bottonColor,
+                        )
+                      : Container()
                 ],
               );
             },
