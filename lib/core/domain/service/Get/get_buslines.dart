@@ -1,23 +1,23 @@
 import 'package:hurry_project/core/domain/model/error_model.dart';
 import 'package:hurry_project/core/domain/model/exception_model.dart';
 import 'package:hurry_project/core/domain/model/model.dart';
-import 'package:hurry_project/core/domain/model/response_model/verteses_model.dart';
+import 'package:hurry_project/core/domain/model/response_model/resours_busline_model.dart';
 import 'package:hurry_project/core/domain/service/Data_service.dart';
 import 'package:hurry_project/core/resources/url.dart';
 
-List<String> Bus = [];
-List<vertesesModel> ver = [];
+List<ResoursBusLineModel> Buslines = [];
 
-class VertesesService extends Service {
-  Future<List<Model>> getVerteses() async {
+class BuslineService extends Service {
+  Future<List<Model>> getBuslines() async {
     try {
-      response = await dio.get(Url().baseUrl + Url().admin + Url().vertices);
+      response = await dio.get(
+        Url().baseUrl + Url().admin + Url().busline,
+      );
       if (response.statusCode == 200) {
         dynamic temp = response.data;
-        List<vertesesModel> result = List.generate(
-            temp.length, (index) => vertesesModel.fromMap(temp[index]));
-        Bus = List.generate(result.length, (ind) => result[ind].name);
-        ver = result;
+        List<ResoursBusLineModel> result = List.generate(
+            temp.length, (index) => ResoursBusLineModel.fromMap(temp[index]));
+        Buslines = result;
         // print(result);
         return result;
       } else {
@@ -28,6 +28,7 @@ class VertesesService extends Service {
       }
     } catch (e) {
       List<ExceptionModel> result = [ExceptionModel(excption: e.toString())];
+
       return result;
     }
   }

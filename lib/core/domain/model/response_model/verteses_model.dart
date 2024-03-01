@@ -59,19 +59,23 @@ class vertesesModel extends Model {
   @override
   bool operator ==(covariant vertesesModel other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.name == name &&
-      other.bus_line_id == bus_line_id &&
-      other.is_busy == is_busy;
+
+    return other.id == id &&
+        other.name == name &&
+        other.bus_line_id == bus_line_id &&
+        other.is_busy == is_busy;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      name.hashCode ^
-      bus_line_id.hashCode ^
-      is_busy.hashCode;
+        name.hashCode ^
+        bus_line_id.hashCode ^
+        is_busy.hashCode;
+  }
+
+  vertesesModel where(bool Function(dynamic element) param0) {
+    return vertesesModel(
+        id: id, name: name, bus_line_id: bus_line_id, is_busy: is_busy);
   }
 }

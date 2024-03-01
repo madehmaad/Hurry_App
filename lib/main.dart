@@ -7,6 +7,7 @@ import 'package:hurry_project/core/config/get_it.dart';
 
 
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setup();

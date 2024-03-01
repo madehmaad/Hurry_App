@@ -3,15 +3,22 @@ import 'package:flutter/widgets.dart';
 import 'package:hurry_project/core/resources/colors.dart';
 
 // ignore: must_be_immutable
-class SearchAuto extends StatelessWidget {
+class SearchAuto extends StatefulWidget {
   SearchAuto({
     super.key,
     required this.reg,
     required this.label,
+    required this.controller,
   });
   List<String> reg;
   String label;
+  TextEditingController controller;
 
+  @override
+  State<SearchAuto> createState() => _SearchAutoState();
+}
+
+class _SearchAutoState extends State<SearchAuto> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -32,7 +39,7 @@ class SearchAuto extends StatelessWidget {
           }
           // if user is input something the build
           // suggestion based on the user input
-          return reg.where((String option) {
+          return widget.reg.where((String option) {
             return option.contains(Searched.text.toLowerCase());
           });
         },
@@ -42,10 +49,12 @@ class SearchAuto extends StatelessWidget {
         onSelected: (
           String value,
         ) {
-          // setState(() {
-          //   debugPrint('You just selected $value');
-          // //  ind = reg[ind];
-          // });
+          setState(() {
+            debugPrint('You just selected $value');
+            widget.controller.text = value;
+
+            // //  ind = reg[ind];
+          });
         },
         optionsViewBuilder: (context, Function(String) onSelected, options) {
           return Align(
@@ -101,12 +110,13 @@ class SearchAuto extends StatelessWidget {
                     )),
               ));
         },
-        fieldViewBuilder:
-            (context, textEditingController, focusNode, onFieldSubmitted) {
+        fieldViewBuilder: (context, controller, focusNode, onFieldSubmitted) {
           return SizedBox(
-            width: 100,
+            height: screenHeight / 15,
+            width: screenWidth / 1.3,
             child: TextField(
-              controller: textEditingController,
+              cursorHeight: screenHeight / 30,
+              controller: controller,
               focusNode: focusNode,
               onEditingComplete: onFieldSubmitted,
               cursorColor: MainColor().bottonColor,
@@ -117,7 +127,7 @@ class SearchAuto extends StatelessWidget {
                   color: MainColor().bottonColor),
               decoration: InputDecoration(
                 label: Text(
-                  label,
+                  widget.label,
                   style: TextStyle(
                       color: const Color.fromARGB(167, 255, 255, 255)),
                 ),
