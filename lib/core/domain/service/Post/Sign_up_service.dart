@@ -12,7 +12,7 @@ class SignUpService extends Service {
       response = await dio.post(Url().baseUrl + Url().registerUrl,
           data: model.toJson());
 
-      // print(response);
+      print(response);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         dynamic temp = response.data;
@@ -23,12 +23,13 @@ class SignUpService extends Service {
         dynamic temp = response.data;
         // print(response.statusCode);
         ErrorModel result = ErrorModel(error: temp['error']);
+      
         return result;
       }
     } catch (e) {
-      
-        ExceptionModel result = ExceptionModel(excption: e.toString());
-        return result;
+      ExceptionModel result = ExceptionModel(excption: e.toString());
+      print(e);
+      return result;
     }
   }
 }

@@ -6,18 +6,16 @@ import 'package:hurry_project/Views/Auth/Sign_in/sign_in.dart';
 import 'package:hurry_project/core/config/get_it.dart';
 
 
-
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setup();
- 
+
   // Position position = await Geolocator.getCurrentPosition(
   //     desiredAccuracy: LocationAccuracy.high);
   // print(position);
 
-
   Bloc.observer = MyBlocObserver();
+
   runApp(
     const MyApp(),
   );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hurry_project/core/resources/colors.dart';
+
 
 // ignore: must_be_immutable
 class MainTextField extends StatelessWidget {

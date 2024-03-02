@@ -34,6 +34,7 @@ class BusWayScreen extends StatelessWidget {
           child: BlocConsumer<ShortBloc, ShortState>(
             listener: (context, state) {
               if (state is SuccessShort) {
+                Busliness.clear();
                 vert.clear();
                 for (var i = 0; i < vertices.length; i++) {
                   if (vertices[i] != -1) {
@@ -213,11 +214,11 @@ class BusWayScreen extends StatelessWidget {
                                         // print(sorceid.id);
                                         // print(targetid.id);
                                         // print(target.text);
-                                        await BuslineService().getBuslines();
                                         context.read<ShortBloc>().add(Shortpath(
                                             path: ShortestPathModel(
                                                 source_id: sorceid.id,
                                                 target_id: targetid.id)));
+                                        await BuslineService().getBuslines();
                                       }
                                     }),
                                 (state is LoadingShort)
