@@ -141,13 +141,7 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                             .where((element) => element.name == to.text)
                             .first;
                         if (dropValue.isNotEmpty && to.text.isNotEmpty) {
-                          print(NewOrdersModel(
-                              top_passenger_count: 4,
-                              current_passenger_count: 1,
-                              destination_vertices_id: sorceid.id,
-                              source_vertices_id: widget.source,
-                              is_hurry: true,
-                              genders: 'Female'));
+                         
                           context.read<NewBloc>().add(Ordering(
                               New: NewOrdersModel(
                                   top_passenger_count: 4,
@@ -155,7 +149,7 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                                   destination_vertices_id: sorceid.id,
                                   source_vertices_id: widget.source,
                                   is_hurry: true,
-                                  genders: 'Female')));
+                                  genders: dropValue)));
                         }
                         if (dropValue.isEmpty || to.text.isEmpty) {
                           ScaffoldMessenger.of(context)

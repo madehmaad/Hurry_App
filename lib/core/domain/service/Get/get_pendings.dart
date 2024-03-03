@@ -4,7 +4,6 @@ import 'package:hurry_project/core/domain/model/error_model.dart';
 import 'package:hurry_project/core/domain/model/exception_model.dart';
 import 'package:hurry_project/core/domain/model/model.dart';
 import 'package:hurry_project/core/domain/model/request_model/orders_model.dart';
-import 'package:hurry_project/core/domain/model/request_model/orders_model.dart';
 import 'package:hurry_project/core/domain/service/Data_service.dart';
 import 'package:hurry_project/core/resources/url.dart';
 import 'package:shared_preferences/shared_preferences.dart';

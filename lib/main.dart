@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hurry_project/core/config/bloc_obs.dart';
 import 'package:hurry_project/Views/Auth/Sign_in/sign_in.dart';
 import 'package:hurry_project/core/config/get_it.dart';
-
+import 'package:hurry_project/views/Admin/HomePage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SinginScreen(),
+      home: HomeScreenAdmin(),
     );
   }
 }

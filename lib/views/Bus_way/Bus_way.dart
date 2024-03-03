@@ -12,6 +12,8 @@ import 'package:hurry_project/views/widgets/autocomplete.dart';
 import 'package:hurry_project/views/widgets/container.dart';
 import 'package:super_rich_text/super_rich_text.dart';
 
+import '../../core/domain/model/response_model/store_busline_model.dart';
+
 TextEditingController source = TextEditingController();
 TextEditingController target = TextEditingController();
 List<vertesesModel> vert = [];
