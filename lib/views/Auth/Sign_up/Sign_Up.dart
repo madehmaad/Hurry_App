@@ -9,15 +9,26 @@ import 'package:hurry_project/views/widgets/text_field.dart';
 import 'package:super_rich_text/super_rich_text.dart';
 
 // ignore: must_be_immutable
-class SingupScreen extends StatelessWidget {
+class SingupScreen extends StatefulWidget {
   SingupScreen({super.key});
 
+  @override
+  State<SingupScreen> createState() => _SingupScreenState();
+}
+
+class _SingupScreenState extends State<SingupScreen> {
   TextEditingController NameController = TextEditingController();
+
   TextEditingController userNameController = TextEditingController();
+
   TextEditingController passwordController = TextEditingController();
-  TextEditingController genderController = TextEditingController();
+
+  String dropValue = 'Male';
+
   TextEditingController birthController = TextEditingController();
+
   TextEditingController phoneController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -132,11 +143,26 @@ class SingupScreen extends StatelessWidget {
                     SizedBox(
                       height: MediaQuery.of(context).size.height / 100,
                     ),
-                    MainTextField(
-                      context: context,
-                      controller: genderController,
-                      labelText: 'Enter your gender',
-                    ),
+                    DropdownButton<String>(
+                      
+                        dropdownColor: Colors.black,
+                        value: dropValue,
+                        style: TextStyle(color: Colors.white),
+                        items: [
+                          DropdownMenuItem(
+                            value: 'Male',
+                            child: Text('Male'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'Female',
+                            child: Text('Female'),
+                          ),
+                        ],
+                        onChanged: (String? newvalue) {
+                          setState(() {
+                            dropValue = newvalue!;
+                          });
+                        }),
                     SizedBox(
                       height: MediaQuery.of(context).size.height / 100,
                     ),
@@ -167,7 +193,7 @@ class SingupScreen extends StatelessWidget {
                                   name: NameController.text,
                                   email: userNameController.text,
                                   password: passwordController.text,
-                                  gender: genderController.text,
+                                  gender: dropValue,
                                   birth: birthController.text,
                                   phone: phoneController.text)));
                         }
