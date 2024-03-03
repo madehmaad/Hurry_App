@@ -19,12 +19,14 @@ class SignUpService extends Service {
         // print(response.statusCode);
         TokenModel result = TokenModel(token: temp['token']);
         return result;
-      } else {
+      } else if (response.statusCode == 400) {
         dynamic temp = response.data;
         // print(response.statusCode);
         ErrorModel result = ErrorModel(error: temp['error']);
-      
+
         return result;
+      } else {
+        return model;
       }
     } catch (e) {
       ExceptionModel result = ExceptionModel(excption: e.toString());

@@ -22,7 +22,7 @@ class LoginService extends Service {
       } else {
         dynamic temp = response.data;
         print(response.data);
-        ErrorModel result = ErrorModel(error: temp.error);
+        ErrorModel result = ErrorModel(error: temp['error']);
         return result;
       }
     } catch (e) {

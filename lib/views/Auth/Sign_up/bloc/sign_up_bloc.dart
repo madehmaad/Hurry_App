@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:hurry_project/core/config/get_it.dart';
 import 'package:hurry_project/core/domain/model/response_model/regester_model.dart';
 import 'package:hurry_project/core/domain/service/Post/Sign_up_service.dart';
 import 'package:meta/meta.dart';
@@ -12,8 +13,6 @@ part 'sign_up_event.dart';
 part 'sign_up_state.dart';
 
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
-  var config;
-
   SignUpBloc() : super(SignUpInitial()) {
     on<SignUp>((event, emit) async {
       emit(LoadingToSignUp());
